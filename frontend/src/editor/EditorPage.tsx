@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, CloudOff, Loader2 } from 'lucide-react'
+import { ArrowLeft, CloudOff, Loader2, Save } from 'lucide-react'
 import { useProject } from './useProject'
 import { useJobs } from '../hooks/useJobs'
+import { useToast } from '../components/Toasts'
 import Preview from './Preview'
 import SourcePanel from './SourcePanel'
 import { ExportPanel, FootagePanel, HeadlinePanel, LogoPanel, SubtitlesPanel } from './panels'
@@ -22,7 +23,22 @@ export default function EditorPage() {
   const [tab, setTab] = useState<(typeof TABS)[number]['id']>('headline')
   const [currentTime, setCurrentTime] = useState(0)
   const jobs = useJobs()
+  const toast = useToast()
   const jobsBusy = jobs.some((j) => j.projectId === id && j.status === 'running')
+
+  const saveDraft = async () => {
+    if (!project) return
+    try {
+      await fetch(`/api/projects/${project.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ settings: project.settings, name: project.name }),
+      })
+      toast('ok', 'Draft saved', 'Your project is saved. Access it anytime from the Dashboard.')
+    } catch (e: any) {
+      toast('error', 'Save failed', e.message)
+    }
+  }
 
   const common = useMemo(
     () => ({
@@ -85,13 +101,18 @@ export default function EditorPage() {
           />
           <span className="hidden chip md:inline-flex">{project.settings.export.width}×{Math.round((project.settings.export.width * 16) / 9)} · H.264</span>
         </div>
-        <div className="flex items-center gap-3 font-mono text-[10px] uppercase text-ink/50">
-          {saving ? (
-            <span className="flex items-center gap-1"><Loader2 size={11} className="animate-spin" /> saving</span>
-          ) : (
-            <span className="flex items-center gap-1"><CloudOff size={11} /> local only</span>
-          )}
-          <span className="hidden sm:inline">#{project.id}</span>
+        <div className="flex items-center gap-2">
+          <button className="btn btn-xs btn-cobalt" onClick={saveDraft} title="Save current work as a draft">
+            <Save size={12} /> SAVE DRAFT
+          </button>
+          <div className="flex items-center gap-3 font-mono text-[10px] uppercase text-ink/50">
+            {saving ? (
+              <span className="flex items-center gap-1"><Loader2 size={11} className="animate-spin" /> saving</span>
+            ) : (
+              <span className="flex items-center gap-1"><CloudOff size={11} /> local only</span>
+            )}
+            <span className="hidden sm:inline">#{project.id}</span>
+          </div>
         </div>
       </div>
 

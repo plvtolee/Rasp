@@ -152,9 +152,14 @@ export default function Dashboard() {
                   <div className="min-w-0 flex-1 px-3 py-2">
                     <div className="flex items-center justify-between gap-2">
                       <span className="truncate text-[14px] font-bold uppercase leading-tight">{p.name}</span>
-                      <span className="shrink-0 font-mono text-[9px] uppercase text-ink/40">
-                        {new Date(p.updated_at).toLocaleDateString()}
-                      </span>
+                      <div className="flex shrink-0 items-center gap-1.5">
+                        {(!p.exports || p.exports.length === 0) && (
+                          <span className="chip bg-acid !py-0 text-[8px]">DRAFT</span>
+                        )}
+                        <span className="font-mono text-[9px] uppercase text-ink/40">
+                          {new Date(p.updated_at).toLocaleDateString()}
+                        </span>
+                      </div>
                     </div>
                     <div className="mt-0.5 truncate font-mono text-[10px] lowercase text-ink/45">
                       {p.source_path?.split(/[\\/]/).pop() || 'no source'}
