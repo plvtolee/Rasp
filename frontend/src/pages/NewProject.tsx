@@ -85,7 +85,7 @@ export default function NewProject() {
         {/* drop zone */}
         <section
           className={`relative flex min-h-[300px] flex-col items-center justify-center border-2 border-dashed border-ink p-6 text-center transition-colors ${
-            dragging ? 'bg-lime' : 'bg-white'
+            dragging ? 'bg-lime' : 'bg-card'
           }`}
           onDragOver={(e) => {
             e.preventDefault()
@@ -159,7 +159,7 @@ export default function NewProject() {
         <div className="mt-4 panel">
           <header className="flex items-center justify-between border-b-2 border-ink bg-lime px-3 py-2">
             <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em]">READY TO FORMAT</span>
-            <span className="chip bg-white">SOURCE OK</span>
+            <span className="chip bg-card">SOURCE OK</span>
           </header>
           <div className="grid gap-3 p-3 sm:grid-cols-[minmax(0,1fr)_200px_auto] sm:items-end">
             <div className="min-w-0">

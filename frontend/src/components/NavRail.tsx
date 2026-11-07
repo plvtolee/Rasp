@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
-import { Download, Film, LayoutGrid, Settings as SettingsIcon } from 'lucide-react'
+import { Download, Film, LayoutGrid, Moon, Settings as SettingsIcon, Sun } from 'lucide-react'
 import { useJobs } from '../hooks/useJobs'
+import { useTheme } from '../theme'
 
 const items = [
   { to: '/', label: 'DASH', icon: LayoutGrid, end: true },
@@ -11,6 +12,7 @@ const items = [
 
 export default function NavRail() {
   const jobs = useJobs()
+  const { theme, toggle } = useTheme()
   const busy = jobs.some((j) => j.status === 'running')
   const running = jobs.filter((j) => j.status === 'running')[0]
 
@@ -46,6 +48,14 @@ export default function NavRail() {
           </nav>
         </div>
         <div className="border-t border-paper/15 p-2">
+          <button
+            onClick={toggle}
+            className="flex w-full flex-col items-center gap-1.5 py-2 text-paper/60 transition-colors hover:text-paper"
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+            <span className="font-mono text-[8px] uppercase tracking-widest">{theme === 'dark' ? 'LIGHT' : 'DARK'}</span>
+          </button>
           <div className="flex flex-col items-center gap-1.5 py-2" title={busy ? running?.label : 'idle'}>
             <span className={`inline-block h-2 w-2 ${busy ? 'animate-workdot bg-lime' : 'bg-paper/30'}`} />
             <span className="font-mono text-[8px] uppercase tracking-widest text-paper/40">{busy ? 'WORK' : 'IDLE'}</span>
@@ -70,6 +80,13 @@ export default function NavRail() {
               <it.icon size={14} />
             </NavLink>
           ))}
+          <button
+            onClick={toggle}
+            className="grid h-8 w-9 place-items-center border border-paper/25 text-paper/70"
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
         </nav>
       </header>
     </>

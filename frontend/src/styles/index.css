@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-paper-rgb: 245 240 230;
+    --color-ink-rgb: 17 17 17;
+    --color-card-rgb: 255 255 255;
+  }
+  .dark {
+    --color-paper-rgb: 26 26 26;
+    --color-ink-rgb: 245 240 230;
+    --color-card-rgb: 42 42 42;
+  }
   html {
     -webkit-font-smoothing: antialiased;
   }
@@ -38,22 +48,25 @@
   *::-webkit-scrollbar-track {
     background: #f5f0e6;
   }
-  *::-webkit-scrollbar-thumb {
-    background: #111111;
-    border: 2px solid #f5f0e6;
+  .dark *::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  .dark *::-webkit-scrollbar-thumb {
+    background: #f5f0e6;
+    border: 2px solid #1a1a1a;
   }
 }
 
 @layer components {
   /* ---- brutalist primitives ---- */
   .panel {
-    @apply border-2 border-ink bg-white shadow-brutal;
+    @apply border-2 border-ink bg-card shadow-brutal;
   }
   .panel-flat {
-    @apply border-2 border-ink bg-white;
+    @apply border-2 border-ink bg-card;
   }
   .label {
-    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-ink/70;
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-ink opacity-70;
   }
   .sec-label {
     @apply inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em];
@@ -63,7 +76,7 @@
   }
 
   .btn {
-    @apply inline-flex select-none items-center justify-center gap-1.5 border-2 border-ink bg-white px-3 py-1.5 text-[13px] font-bold uppercase tracking-wide text-ink shadow-brutal-sm transition-[transform,box-shadow,background-color,opacity] duration-100 hover:bg-paper active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:pointer-events-none disabled:opacity-40;
+    @apply inline-flex select-none items-center justify-center gap-1.5 border-2 border-ink bg-card px-3 py-1.5 text-[13px] font-bold uppercase tracking-wide text-ink shadow-brutal-sm transition-[transform,box-shadow,background-color,opacity] duration-100 hover:bg-paper active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:pointer-events-none disabled:opacity-40;
   }
   .btn-lime {
     @apply bg-lime hover:brightness-[1.06];
@@ -75,23 +88,23 @@
     @apply bg-tang text-ink;
   }
   .btn-ink {
-    @apply bg-ink text-lime hover:bg-ink/90;
+    @apply bg-ink text-lime hover:opacity-90;
   }
   .btn-ghost {
-    @apply shadow-none bg-transparent border-transparent hover:bg-ink/5 active:bg-ink/10;
+    @apply shadow-none bg-transparent border-transparent hover:opacity-5 active:opacity-10;
   }
   .btn-xs {
     @apply px-2 py-0.5 text-[10px] shadow-none border-[1.5px];
   }
 
   .field {
-    @apply w-full border-2 border-ink bg-white px-2.5 py-1.5 font-sans text-[13px] font-medium text-ink outline-none placeholder:text-ink/30 focus:shadow-brutal-sm;
+    @apply w-full border-2 border-ink bg-card px-2.5 py-1.5 font-sans text-[13px] font-medium text-ink outline-none placeholder:opacity-30 focus:shadow-brutal-sm;
   }
   .field-mono {
     @apply font-mono text-[12px] tracking-tight;
   }
   .chip {
-    @apply inline-flex items-center border border-ink bg-white px-2 py-[3px] font-mono text-[10px] uppercase tracking-wider;
+    @apply inline-flex items-center border border-ink bg-card px-2 py-[3px] font-mono text-[10px] uppercase tracking-wider;
   }
 }
 

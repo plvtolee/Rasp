@@ -285,7 +285,7 @@ export default function Preview({ settings, transcript, videoPath, srcW, duratio
 
         {/* fullscreen */}
         <button
-          className="absolute right-2 top-2 z-10 border-2 border-ink bg-white p-1 shadow-brutal-sm"
+          className="absolute right-2 top-2 z-10 border-2 border-ink bg-card p-1 shadow-brutal-sm"
           onClick={() => containerRef.current?.requestFullscreen?.()}
           title="Fullscreen preview"
         >

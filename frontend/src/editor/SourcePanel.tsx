@@ -162,7 +162,7 @@ export default function SourcePanel({ project, meta, mutate, currentTime, reload
             {suggestions.map((sg, i) => (
               <button
                 key={i}
-                className="group border-2 border-ink bg-white px-2 py-1.5 text-left hover:bg-acid"
+                className="group border-2 border-ink bg-card px-2 py-1.5 text-left hover:bg-acid"
                 onClick={() => {
                   setTrim(sg.start, sg.end)
                   toast('ok', 'Range applied', `${fmt(sg.start)} → ${fmt(sg.end)}`)

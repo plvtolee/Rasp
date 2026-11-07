@@ -83,14 +83,14 @@ export default function Dashboard() {
             <Link to="/new" className="btn btn-lime !px-4">
               <Clapperboard size={15} /> START A PROJECT
             </Link>
-            <Link to="/settings" className="btn !bg-white/10 !text-white hover:!bg-white/20">
+            <Link to="/settings" className="btn !bg-card/10 !text-white hover:!bg-card/20">
               SETUP ENGINE
             </Link>
           </div>
         </section>
 
         <section className="grid grid-rows-2 gap-4">
-          <div className="border-2 border-ink bg-white p-4 shadow-brutal">
+          <div className="border-2 border-ink bg-card p-4 shadow-brutal">
             <div className="flex items-center justify-between">
               <h3 className="sec-label">
                 <span className="sec-dot bg-tang" /> PROCESSING
@@ -144,7 +144,7 @@ export default function Dashboard() {
                 <button
                   key={p.id}
                   onClick={() => navigate(`/editor/${p.id}`)}
-                  className="group flex items-stretch border-2 border-ink bg-white text-left shadow-brutal-sm transition-transform hover:-translate-y-0.5 hover:shadow-brutal"
+                  className="group flex items-stretch border-2 border-ink bg-card text-left shadow-brutal-sm transition-transform hover:-translate-y-0.5 hover:shadow-brutal"
                 >
                   <div className={`grid w-12 shrink-0 place-items-center border-r-2 border-ink font-mono text-[13px] font-bold ${['bg-lime', 'bg-bubble', 'bg-tang', 'bg-acid', 'bg-cobalt text-white'][i % 5]}`}>
                     {String(i + 1).padStart(2, '0')}
@@ -195,7 +195,7 @@ export default function Dashboard() {
           ) : (
             <div className="mt-2 flex flex-col gap-2">
               {exports.slice(0, 5).map((e) => (
-                <div key={e.id} className="border-2 border-ink bg-white px-2.5 py-2 shadow-brutal-sm">
+                <div key={e.id} className="border-2 border-ink bg-card px-2.5 py-2 shadow-brutal-sm">
                   <div className="flex items-center justify-between gap-2">
                     <span className="truncate text-[12.5px] font-bold uppercase">{e.project_name}</span>
                     <button className="btn btn-xs !p-1.5" title="Open folder" onClick={() => openFolder(e.output_path)}>

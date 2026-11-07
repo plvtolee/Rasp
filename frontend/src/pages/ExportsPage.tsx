@@ -46,7 +46,7 @@ export default function ExportsPage() {
       ) : (
         <div className="mt-4 flex flex-col gap-2.5">
           {exports.map((e, i) => (
-            <div key={e.id} className="flex flex-col gap-2 border-2 border-ink bg-white p-3 shadow-brutal-sm sm:flex-row sm:items-center">
+            <div key={e.id} className="flex flex-col gap-2 border-2 border-ink bg-card p-3 shadow-brutal-sm sm:flex-row sm:items-center">
               <div className={`grid h-9 w-9 shrink-0 place-items-center border-2 border-ink font-mono text-[11px] font-bold ${['bg-lime', 'bg-bubble', 'bg-tang', 'bg-acid'][i % 4]}`}>
                 {String(i + 1).padStart(2, '0')}
               </div>

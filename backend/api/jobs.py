@@ -8,6 +8,7 @@ from fastapi import APIRouter, HTTPException
 from backend.jobs import manager as jobs
 from backend.storage import db
 from backend.composition.layout import DEFAULT_SETTINGS
+from backend.utils.paths import DEFAULT_EXPORT_DIR
 
 router = APIRouter(prefix="/api", tags=["jobs"])
 

@@ -130,7 +130,7 @@ export default function SettingsPage() {
                 <span className="truncate">{job.message || 'downloading'}</span>
                 <span>{job.progress}%</span>
               </div>
-              <div className="h-2.5 border-2 border-ink bg-white">
+              <div className="h-2.5 border-2 border-ink bg-card">
                 <div className="h-full bg-lime" style={{ width: `${job.progress}%` }} />
               </div>
             </div>
@@ -178,7 +178,7 @@ export default function SettingsPage() {
             <Slider label="Size" value={cfg.headlineStyle.size} min={20} max={140} onChange={(v) => setCfg({ ...cfg, headlineStyle: { ...cfg.headlineStyle, size: v } })} unit="px" />
           </div>
           <div className="mt-3 flex items-center gap-3">
-            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-white p-0" value={cfg.headlineStyle.color} onChange={(e) => setCfg({ ...cfg, headlineStyle: { ...cfg.headlineStyle, color: e.target.value } })} />
+            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-card p-0" value={cfg.headlineStyle.color} onChange={(e) => setCfg({ ...cfg, headlineStyle: { ...cfg.headlineStyle, color: e.target.value } })} />
             <span className="font-mono text-[11px] uppercase text-ink/50">TEXT COLOUR</span>
           </div>
         </Card>
@@ -196,9 +196,9 @@ export default function SettingsPage() {
             <Slider label="Size" value={cfg.subtitleStyle.size} min={20} max={90} onChange={(v) => setCfg({ ...cfg, subtitleStyle: { ...cfg.subtitleStyle, size: v } })} unit="px" />
           </div>
           <div className="mt-3 flex items-center gap-3">
-            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-white p-0" value={cfg.subtitleStyle.color} onChange={(e) => setCfg({ ...cfg, subtitleStyle: { ...cfg.subtitleStyle, color: e.target.value } })} />
+            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-card p-0" value={cfg.subtitleStyle.color} onChange={(e) => setCfg({ ...cfg, subtitleStyle: { ...cfg.subtitleStyle, color: e.target.value } })} />
             <span className="font-mono text-[11px] uppercase text-ink/50">TEXT</span>
-            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-white p-0" value={cfg.subtitleStyle.highlightColor} onChange={(e) => setCfg({ ...cfg, subtitleStyle: { ...cfg.subtitleStyle, highlightColor: e.target.value } })} />
+            <input type="color" className="h-8 w-10 cursor-pointer border-2 border-ink bg-card p-0" value={cfg.subtitleStyle.highlightColor} onChange={(e) => setCfg({ ...cfg, subtitleStyle: { ...cfg.subtitleStyle, highlightColor: e.target.value } })} />
             <span className="font-mono text-[11px] uppercase text-ink/50">HIGHLIGHT</span>
           </div>
           <div className="mt-3">
@@ -237,7 +237,7 @@ function Card({
   className?: string
 }) {
   return (
-    <section className={`border-2 border-ink bg-white shadow-brutal ${className}`}>
+    <section className={`border-2 border-ink bg-card shadow-brutal ${className}`}>
       <header className={`flex items-center gap-2 border-b-2 border-ink px-3 py-2 ${accent}`}>
         <Icon size={15} strokeWidth={2.5} />
         <h2 className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]">{title}</h2>
