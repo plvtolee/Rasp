@@ -93,11 +93,11 @@ export function Toggle({ label, checked, onChange, accent = 'lime' }: { label: s
       type="button"
       onClick={() => onChange(!checked)}
       className={`flex w-full items-center justify-between border-2 border-ink px-2.5 py-1.5 transition-colors ${
-        checked ? `${accent === 'lime' ? 'bg-lime' : accent === 'cobalt' ? 'bg-cobalt text-white' : accent === 'tang' ? 'bg-tang' : 'bg-bubble'} font-bold` : 'bg-card'
+        checked ? `${accent === 'lime' ? 'bg-lime' : accent === 'cobalt' ? 'bg-cobalt text-white' : accent === 'tang' ? 'bg-tang' : 'bg-bubble'} font-bold` : 'bg-white'
       }`}
     >
       <span className="text-[12px] font-bold uppercase tracking-wide">{label}</span>
-      <span className={`flex h-4 w-8 items-center border border-ink bg-card ${checked ? 'justify-end' : 'justify-start'}`}>
+      <span className={`flex h-4 w-8 items-center border border-ink bg-white ${checked ? 'justify-end' : 'justify-start'}`}>
         <span className="h-3 w-3 bg-ink" />
       </span>
     </button>
@@ -120,7 +120,7 @@ export function SegButton<T extends string>({ label, value, onChange, options }:
   return (
     <div>
       <div className="label mb-1">{label}</div>
-      <div className="flex border-2 border-ink bg-card">
+      <div className="flex border-2 border-ink bg-white">
         {options.map((o) => (
           <button
             key={o.value}
@@ -141,7 +141,7 @@ export function SegButton<T extends string>({ label, value, onChange, options }:
 export function MonoStat({ k, v, accent }: { k: string; v: React.ReactNode; accent?: 'lime' | 'tang' | 'acid' | 'bubble' | 'cobalt' }) {
   const bg = accent === 'tang' ? 'bg-tang' : accent === 'lime' ? 'bg-lime' : accent === 'acid' ? 'bg-acid' : accent === 'bubble' ? 'bg-bubble' : accent === 'cobalt' ? 'bg-cobalt text-white' : ''
   return (
-    <div className={`border-2 border-ink px-2 py-1 ${bg || 'bg-card shadow-brutal-sm'}`}>
+    <div className={`border-2 border-ink px-2 py-1 ${bg || 'bg-white shadow-brutal-sm'}`}>
       <div className={`label leading-none ${accent === 'cobalt' ? 'text-white/60' : ''}`}>{k}</div>
       <div className="mt-0.5 truncate font-mono text-[12px] font-bold leading-tight">{v}</div>
     </div>

@@ -59,7 +59,7 @@ export function HeadlinePanel({ project, mutate, transcript }: Common) {
           <Select value={h.fontFamily} onChange={(v) => set({ fontFamily: v })} options={FONTS.map((f) => ({ value: f, label: f }))} />
         </Field>
         <Field label="Align">
-          <div className="flex border-2 border-ink bg-card">
+          <div className="flex border-2 border-ink bg-white">
             {(['left', 'center', 'right'] as const).map((a) => (
               <button key={a} className={`flex-1 py-1.5 font-mono text-[10px] font-bold uppercase ${h.align === a ? 'bg-ink text-lime' : ''} hover:bg-paper`} onClick={() => set({ align: a })}>
                 {a}
@@ -78,8 +78,8 @@ export function HeadlinePanel({ project, mutate, transcript }: Common) {
           <button className={`btn flex-1 !px-1 ${h.italic ? 'btn-tang' : ''}`} onClick={() => set({ italic: !h.italic })}>
             <em>I</em>
           </button>
-          <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-card p-0" value={h.color} onChange={(e) => set({ color: e.target.value })} title="Text colour" />
-          <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-card p-0" value={h.stroke.color} onChange={(e) => set({ stroke: { ...h.stroke, color: e.target.value } })} title="Stroke colour" />
+          <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-white p-0" value={h.color} onChange={(e) => set({ color: e.target.value })} title="Text colour" />
+          <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-white p-0" value={h.stroke.color} onChange={(e) => set({ stroke: { ...h.stroke, color: e.target.value } })} title="Stroke colour" />
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -175,7 +175,7 @@ export function SubtitlesPanel({ project, mutate, transcript, setTranscript, rel
             <span>{job.error ? job.error : job.message || 'transcribing'}</span>
             <span>{job.progress}%</span>
           </div>
-          <div className="h-3 border-2 border-ink bg-card">
+          <div className="h-3 border-2 border-ink bg-white">
             <div className="h-full bg-lime transition-all" style={{ width: `${job.progress}%` }} />
           </div>
           <button className="btn btn-xs mt-1.5 w-full" onClick={() => api.post(`/api/jobs/${jobId}/cancel`)}>CANCEL</button>
@@ -202,9 +202,9 @@ export function SubtitlesPanel({ project, mutate, transcript, setTranscript, rel
         <Slider label="Low margin" value={sub.bottomGapPct} min={0} max={20} step={0.2} onChange={(v) => set({ bottomGapPct: v })} unit="%" />
       </div>
       <div className="flex items-end gap-2">
-        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-card p-0" value={sub.color} onChange={(e) => set({ color: e.target.value })} title="Text colour" />
-        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-card p-0" value={sub.outlineColor} onChange={(e) => set({ outlineColor: e.target.value })} title="Outline" />
-        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-card p-0" value={sub.highlightColor} onChange={(e) => set({ highlightColor: e.target.value })} title="Highlight" />
+        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-white p-0" value={sub.color} onChange={(e) => set({ color: e.target.value })} title="Text colour" />
+        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-white p-0" value={sub.outlineColor} onChange={(e) => set({ outlineColor: e.target.value })} title="Outline" />
+        <input type="color" className="h-[30px] w-9 cursor-pointer border-2 border-ink bg-white p-0" value={sub.highlightColor} onChange={(e) => set({ highlightColor: e.target.value })} title="Highlight" />
         <div className="flex-1">
           <Field label="Highlight keywords" hint="comma list">
             <input className="field" value={sub.highlightKeywords} placeholder="money, insane" onChange={(e) => set({ highlightKeywords: e.target.value })} />
@@ -469,7 +469,7 @@ export function ExportPanel({ project, mutate, reload, jobsBusy }: Common) {
             <span className="truncate">{job.message || 'rendering'}</span>
             <span>{job.progress}%</span>
           </div>
-          <div className="h-3.5 border-2 border-ink bg-card">
+          <div className="h-3.5 border-2 border-ink bg-white">
             <div className="h-full bg-bubble transition-[width] duration-300" style={{ width: `${job.progress}%` }} />
           </div>
           <button className="btn btn-xs btn-tang mt-1.5 w-full" onClick={cancel}>CANCEL RENDER</button>
