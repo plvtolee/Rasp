@@ -47,7 +47,7 @@ def suggest_headline(transcript_text: str, paragraphs: int = 3) -> Dict[str, Any
                 json={
                     "model": model(),
                     "messages": [{"role": "user", "content": prompt}],
-                    "max_tokens": 40,
+                    "max_tokens": 300,
                     "temperature": 0.8,
                 },
                 timeout=25,
@@ -55,8 +55,27 @@ def suggest_headline(transcript_text: str, paragraphs: int = 3) -> Dict[str, Any
             if resp.status_code == 200:
                 data = resp.json()
                 text = (data.get("choices") or [{}])[0].get("message", {}).get("content", "")
-                text = text.strip().strip('"').strip()
-                if text:
+                # Some reasoning models return content in "reasoning" instead
+                if not text:
+                    reasoning = (data.get("choices") or [{}])[0].get("message", {}).get("reasoning", "")
+                    if reasoning:
+                        # Look for quoted headline candidates
+                        quotes = re.findall(r'"([^"]{3,60})"', reasoning)
+                        if quotes:
+                            text = quotes[-1]
+                        else:
+                            # Look for lines that look like headlines (short, punchy)
+                            lines = [l.strip() for l in reasoning.splitlines() if l.strip()]
+                            for line in reversed(lines):
+                                # Skip thinking process lines
+                                if any(kw in line.lower() for kw in ['thinking', 'analyze', 'select', 'count', 'word', 'option', 'candidate', '->', 'perfect', 'analyze']):
+                                    continue
+                                if 2 <= len(line.split()) <= 9:
+                                    text = line.strip("- *•").strip()
+                                    break
+                text = (text or "").strip().strip('"').strip()
+                # Validate: must be a reasonable headline (not a thinking fragment)
+                if text and len(text.split()) <= 12 and not any(kw in text.lower() for kw in ['thinking', 'analyze', 'select', 'candidate', 'option', 'words:']):
                     return {"headline": clean(text), "source": "ai"}
         except (httpx.HTTPError, ValueError, KeyError):
             pass  # fall through to the heuristic
