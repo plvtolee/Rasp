@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-lime text-ink;
+  }
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: #111111;
+    outline: none;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #c6ff36;
+    border: 2px solid #111111;
+    cursor: pointer;
+  }
+  input[type='range']:active::-webkit-slider-thumb {
+    background: #ff58a8;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #f5f0e6;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #111111;
+    border: 2px solid #f5f0e6;
+  }
+}
+
+@layer components {
+  /* ---- brutalist primitives ---- */
+  .panel {
+    @apply border-2 border-ink bg-white shadow-brutal;
+  }
+  .panel-flat {
+    @apply border-2 border-ink bg-white;
+  }
+  .label {
+    @apply font-mono text-[10px] uppercase tracking-[0.18em] text-ink/70;
+  }
+  .sec-label {
+    @apply inline-flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em];
+  }
+  .sec-dot {
+    @apply inline-block h-2 w-2 border border-ink;
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-1.5 border-2 border-ink bg-white px-3 py-1.5 text-[13px] font-bold uppercase tracking-wide text-ink shadow-brutal-sm transition-[transform,box-shadow,background-color,opacity] duration-100 hover:bg-paper active:translate-x-[3px] active:translate-y-[3px] active:shadow-none disabled:pointer-events-none disabled:opacity-40;
+  }
+  .btn-lime {
+    @apply bg-lime hover:brightness-[1.06];
+  }
+  .btn-cobalt {
+    @apply bg-cobalt text-white;
+  }
+  .btn-tang {
+    @apply bg-tang text-ink;
+  }
+  .btn-ink {
+    @apply bg-ink text-lime hover:bg-ink/90;
+  }
+  .btn-ghost {
+    @apply shadow-none bg-transparent border-transparent hover:bg-ink/5 active:bg-ink/10;
+  }
+  .btn-xs {
+    @apply px-2 py-0.5 text-[10px] shadow-none border-[1.5px];
+  }
+
+  .field {
+    @apply w-full border-2 border-ink bg-white px-2.5 py-1.5 font-sans text-[13px] font-medium text-ink outline-none placeholder:text-ink/30 focus:shadow-brutal-sm;
+  }
+  .field-mono {
+    @apply font-mono text-[12px] tracking-tight;
+  }
+  .chip {
+    @apply inline-flex items-center border border-ink bg-white px-2 py-[3px] font-mono text-[10px] uppercase tracking-wider;
+  }
+}
+
+@layer utilities {
+  .force-blk {
+    text-transform: uppercase;
+  }
+  .checker {
+    background-image:
+      linear-gradient(45deg, #d8d2c2 25%, transparent 25%),
+      linear-gradient(-45deg, #d8d2c2 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #d8d2c2 75%),
+      linear-gradient(-45deg, transparent 75%, #d8d2c2 75%);
+    background-size: 10px 10px;
+    background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+  }
+}
+
+@keyframes rasp-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.animate-workdot {
+  animation: rasp-pulse 1s steps(2, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "rasp",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "RASP — lightweight AI Shorts formatter (frontend)",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview"
+  }
+}

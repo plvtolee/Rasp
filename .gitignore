@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Runtime data
+projects/
+exports/
+assets/whisper/
+
+# Environment
+.env
+
+# Debug
+*.log
