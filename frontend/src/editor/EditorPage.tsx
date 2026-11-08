@@ -6,7 +6,7 @@ import { useJobs } from '../hooks/useJobs'
 import { useToast } from '../components/Toasts'
 import Preview from './Preview'
 import SourcePanel from './SourcePanel'
-import { ExportPanel, FootagePanel, HeadlinePanel, LogoPanel, SubtitlesPanel } from './panels'
+import { EffectsPanel, ExportPanel, FootagePanel, HeadlinePanel, LogoPanel, SubtitlesPanel } from './panels'
 import { Spinner } from '../components/ui'
 
 const TABS = [
@@ -14,6 +14,7 @@ const TABS = [
   { id: 'subs', label: 'SUBTITLES', accent: 'bg-bubble' },
   { id: 'logo', label: 'LOGO', accent: 'bg-tang' },
   { id: 'video', label: 'VIDEO', accent: 'bg-cobalt' },
+  { id: 'effects', label: 'EFFECTS', accent: 'bg-acid' },
   { id: 'export', label: 'EXPORT', accent: 'bg-acid' },
 ] as const
 
@@ -166,6 +167,7 @@ export default function EditorPage() {
               {tab === 'subs' && <SubtitlesPanel {...common} />}
               {tab === 'logo' && <LogoPanel {...common} />}
               {tab === 'video' && <FootagePanel {...common} />}
+              {tab === 'effects' && <EffectsPanel {...common} />}
               {tab === 'export' && <ExportPanel {...common} />}
             </div>
           </div>

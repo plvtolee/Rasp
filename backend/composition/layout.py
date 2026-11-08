@@ -74,6 +74,43 @@ DEFAULT_SETTINGS: Dict[str, Any] = {
         "fadeIn": 0.0,
         "fadeOut": 0.0,
     },
+    "effects": {
+        "version": 1,
+        "adjustments": {
+            "brightness": 0,
+            "contrast": 100,
+            "saturation": 100,
+            "temperature": 0,
+            "tint": 0,
+            "sharpen": 0,
+            "blur": 0,
+            "vignette": 0,
+        },
+        "motion": [],
+        "visual_effects": [],
+        "transitions": {
+            "fade_in": 0.0,
+            "fade_out": 0.0,
+            "zoom_in": 0.0,
+            "zoom_out": 0.0,
+            "blur_in": 0.0,
+            "flash_in": 0.0,
+        },
+    },
+    "ai_director": {
+        "mode": "viral",
+        "enabled_actions": {
+            "dynamic_zoom": True,
+            "punch_zoom": True,
+            "smooth_camera": True,
+            "subtitle_emphasis": True,
+            "audio_aware": True,
+            "smart_visual": True,
+            "silence_removal": False,
+            "speed_changes": False,
+        },
+        "editing_plan": None,
+    },
     "export": {
         "width": 1080,                     # 1080 or 720
         "fps": None,                       # None = source fps

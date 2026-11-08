@@ -69,6 +69,80 @@ export interface AudioSettings {
   fadeOut: number
 }
 
+export interface EffectsAdjustments {
+  brightness: number
+  contrast: number
+  saturation: number
+  temperature: number
+  tint: number
+  sharpen: number
+  blur: number
+  vignette: number
+}
+
+export interface MotionEvent {
+  id: string
+  type: string
+  enabled: boolean
+  startTime: number
+  endTime: number
+  intensity: number
+  fromScale?: number
+  toScale?: number
+  scale?: number
+  duration?: number
+  holdDuration?: number
+  returnDuration?: number
+  easing: string
+  focalX: number
+  focalY: number
+  frequency?: number
+  direction?: string
+  reason?: string
+  confidence?: number
+}
+
+export interface VisualEffect {
+  id: string
+  type: string
+  enabled: boolean
+  intensity: number
+  startTime?: number
+  endTime?: number
+  params?: Record<string, number>
+}
+
+export interface EffectsTransitions {
+  fade_in: number
+  fade_out: number
+  zoom_in: number
+  zoom_out: number
+  blur_in: number
+  flash_in: number
+}
+
+export interface EffectsConfig {
+  version: number
+  adjustments: EffectsAdjustments
+  motion: MotionEvent[]
+  visual_effects: VisualEffect[]
+  transitions: EffectsTransitions
+}
+
+export interface AIDirectorConfig {
+  mode: 'subtle' | 'viral' | 'aggressive'
+  enabled_actions: Record<string, boolean>
+  editing_plan: AIEditingPlan | null
+}
+
+export interface AIEditingPlan {
+  version: number
+  editing_mode: string
+  motion_events: MotionEvent[]
+  subtitle_emphasis: { start: number; end: number; keyword: string; color: string }[]
+  confidence: number
+}
+
 export interface ExportSettings {
   width: number
   fps: number | null
@@ -93,6 +167,8 @@ export interface Settings {
   subtitles: SubtitleSettings
   logo: LogoSettings
   audio: AudioSettings
+  effects: EffectsConfig
+  ai_director: AIDirectorConfig
   export: ExportSettings
 }
 
