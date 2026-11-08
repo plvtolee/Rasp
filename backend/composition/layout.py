@@ -164,13 +164,13 @@ class Layout:
             self.logo_x = even(self.W / 2)
             self.logo_y = self.footage_bottom + self.logo_gap
 
-        # Zone D: subtitles now live inside the footage clip (burned before composition).
-        # ASS marginV will be relative to footage height.
+        # Zone D: subtitles live inside the footage area, low. ASS alignment=2 is
+        # canvas-relative, so marginV must be measured from the CANVAS bottom.
         subs = settings["subtitles"]
         self.subtitle_inset_h = round(self.W * subs.get("marginPct", 2.0) / 100.0)
         self.subtitle_inset_v = round(self.footage_scaled_h * subs.get("bottomGapPct", 1.8) / 100.0)
-        self.subtitle_margin_h = self.subtitle_inset_h
-        self.subtitle_margin_v = max(0, self.subtitle_inset_v)
+        self.subtitle_margin_h = max(8, (self.W - self.footage_scaled_w) // 2 + self.subtitle_inset_h)
+        self.subtitle_margin_v = max(0, round(self.H - self.footage_bottom)) + self.subtitle_inset_v
 
 
 def safe_names(settings: Dict[str, Any]) -> List[str]:

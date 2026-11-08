@@ -141,20 +141,16 @@ class ExportRunner:
         chains.append("[0:v]" + ",".join(vf) + "[vid]")
 
         chains.append(f"color=black:s={W}x{H}:r={fps:.3f}:d={a['dur']:.3f}[base]")
-        # footage with subtitles burned onto it first (subtitles stay inside footage area)
+        chains.append(f"[base][vid]overlay=x={layout.footage_x}:y={layout.footage_y}[comp]")
+
+        cur = "comp"
         if a["ass"]:
             fdir = _esc_filter_path(Path(a["ass"]).parent)
             fpath = _esc_filter_path(Path(a["ass"]))
-            # fontsdir must point to a directory containing only font files
             from backend.utils.paths import FONTS_DIR
             fontdir = _esc_filter_path(FONTS_DIR)
-            chains.append(f"[vid]subtitles=filename='{fpath}':fontsdir='{fontdir}'[vid_sub]")
-            vid_chain = "vid_sub"
-        else:
-            vid_chain = "vid"
-        chains.append(f"[base][{vid_chain}]overlay=x={layout.footage_x}:y={layout.footage_y}[comp]")
-
-        cur = "comp"
+            chains.append(f"[{cur}]subtitles=filename='{fpath}':fontsdir='{fontdir}'[subbed]")
+            cur = "subbed"
         # headline
         chains.append(f"[{cur}][1:v]overlay=x=0:y=0[hded]")
         cur = "hded"
