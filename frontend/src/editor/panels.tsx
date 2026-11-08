@@ -491,7 +491,7 @@ function Collapsible({ title, accent, children, defaultOpen = false }: { title: 
   const [open, setOpen] = useState(defaultOpen)
   return (
     <div className="border-2 border-ink">
-      <button onClick={() => setOpen(!open)} className={}>
+      <button onClick={() => setOpen(!open)} className={`flex w-full items-center justify-between px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] ${accent}`}>
         <span className="flex items-center gap-2">{open ? <ChevronDown size={13} /> : <ChevronRight size={13} />} {title}</span>
       </button>
       {open && <div className="flex flex-col gap-3 border-t-2 border-ink p-3">{children}</div>}
@@ -685,5 +685,3 @@ export function EffectsPanel({ project, mutate, reload, jobsBusy }: any) {
     </div>
   )
 }
-EOF
-echo "effects panel written"
